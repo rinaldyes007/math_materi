@@ -2,10 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:math_materi/login2.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'model/slider.dart';
 
-void main() {
+int initScreen;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  initScreen = await pref.getInt('initScreen');
+  await pref.setInt('initScreen', 1);
   runApp(MyApp());
 }
 
@@ -14,7 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Barisan & Deret",
-      home: Home(),
+      initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
+      routes: {
+        'home': (context) => HomePage(),
+        'onboard': (context) => Home(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
