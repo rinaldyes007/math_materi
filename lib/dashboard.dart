@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:math_materi/evaluasi.dart';
+import 'package:math_materi/profile.dart';
 
-import 'latihan.dart';
 import 'materi.dart';
+import 'latihan.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -75,10 +76,10 @@ class _DashboardPageState extends State<DashboardPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  menuKotak('assets/evaluasi.png', 'Evaluasi', context,
+                      EvaluasiPage()),
                   menuKotak(
-                      'assets/evaluasi.png', 'Evaluasi', context, MateriPage()),
-                  menuKotak(
-                      'assets/profile.png', 'Profil', context, EvaluasiPage())
+                      'assets/profile.png', 'Profil', context, ProfilPage())
                 ],
               ),
               SizedBox(

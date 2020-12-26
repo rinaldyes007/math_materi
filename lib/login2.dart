@@ -38,11 +38,10 @@ class _HomePageState extends State<HomePage> {
         body: {"email": username, "password": password});
     final data = jsonDecode(response.body);
     bool value = data['status'];
-    String pesan = data['message'];
+
     if (value == true) {
       setState(() {
         _loginStatus = LoginStatus.signIn;
-        print(value);
       });
     } else {
       print(value);
