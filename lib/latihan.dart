@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart';
 import 'package:html_unescape/html_unescape.dart';
-
 import 'model/soal.dart';
 
 class LatihanPage extends StatefulWidget {
@@ -12,7 +10,6 @@ class LatihanPage extends StatefulWidget {
 
 class _LatihanPageState extends State<LatihanPage> {
   var unescape = new HtmlUnescape();
-  String oke, parser;
 
   String output = "no";
   String option1 = "no", option2 = "no", option3 = "no", option4 = "no";
@@ -39,6 +36,7 @@ class _LatihanPageState extends State<LatihanPage> {
         option4 = option4 + soals[index].pilihanD;
         jawaban = jawaban + soals[index].jawaban;
       });
+      index++;
     });
   }
 
@@ -50,18 +48,14 @@ class _LatihanPageState extends State<LatihanPage> {
       ),
       child: MaterialButton(
         onPressed: () {
-          if (option1 == jawaban) {
+          if (str == jawaban) {
             benar++;
-          } else if (option2 == jawaban) {
-            benar++;
-          } else if (option3 == jawaban) {
-            benar++;
-          } else if (option4 == jawaban) {
-            benar++;
+            print(benar);
           } else {
             salah++;
+            print(salah);
           }
-          print(salah);
+          index++;
           setState(() {});
         },
         child: Text(
