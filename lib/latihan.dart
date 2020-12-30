@@ -11,6 +11,9 @@ class LatihanPage extends StatefulWidget {
 }
 
 class _LatihanPageState extends State<LatihanPage> {
+  var unescape = new HtmlUnescape();
+  String oke, parser;
+
   String output = "no";
   String option1 = "no", option2 = "no", option3 = "no", option4 = "no";
   String jawaban;
@@ -113,7 +116,10 @@ class _LatihanPageState extends State<LatihanPage> {
                   padding: EdgeInsets.all(15.0),
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    output,
+                    unescape
+                        .convert(output)
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", " ?"),
                     textAlign: TextAlign.justify,
                     style: TextStyle(fontSize: 18),
                   )),
