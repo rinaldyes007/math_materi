@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:math_materi/model/soal.dart';
-import 'dart:convert';
-import 'dart:async';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:html_unescape/html_unescape.dart';
+
+import 'model/soal.dart';
 
 class LatihanPage extends StatefulWidget {
   @override
@@ -11,16 +11,58 @@ class LatihanPage extends StatefulWidget {
 }
 
 class _LatihanPageState extends State<LatihanPage> {
-  Widget choiceButton() {
+  String output = "no";
+  String option1 = "no", option2 = "no", option3 = "no", option4 = "no";
+  String jawaban;
+  var index = 1;
+  var benar = 0;
+  var salah = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Soal.getSoals().then((soals) {
+      output = "";
+      option1 = "";
+      option2 = "";
+      option3 = "";
+      option4 = "";
+      jawaban = "";
+      setState(() {
+        output = output + soals[index].soall;
+        option1 = option1 + soals[index].pilihanA;
+        option2 = option2 + soals[index].pilihanB;
+        option3 = option3 + soals[index].pilihanC;
+        option4 = option4 + soals[index].pilihanD;
+        jawaban = jawaban + soals[index].jawaban;
+      });
+    });
+  }
+
+  Widget choiceButton(String str) {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 10,
         horizontal: 20,
       ),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          if (option1 == jawaban) {
+            benar++;
+          } else if (option2 == jawaban) {
+            benar++;
+          } else if (option3 == jawaban) {
+            benar++;
+          } else if (option4 == jawaban) {
+            benar++;
+          } else {
+            salah++;
+          }
+          print(salah);
+          setState(() {});
+        },
         child: Text(
-          "Option",
+          str,
           style: TextStyle(
             color: Colors.white,
             fontSize: 16,
@@ -68,34 +110,23 @@ class _LatihanPageState extends State<LatihanPage> {
             Expanded(
               flex: 3,
               child: Container(
-                padding: EdgeInsets.all(15.0),
-                alignment: Alignment.bottomLeft,
-                child: FutureBuilder<List<Soal>>(
-                    future: fetchSoal(http.Client()),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Text(
-                          "  snapshot.",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                      }
-                      return CircularProgressIndicator();
-                    }),
-              ),
+                  padding: EdgeInsets.all(15.0),
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    output,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 18),
+                  )),
             ),
             Expanded(
               flex: 6,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  choiceButton(),
-                  choiceButton(),
-                  choiceButton(),
-                  choiceButton()
+                  choiceButton(option1),
+                  choiceButton(option2),
+                  choiceButton(option3),
+                  choiceButton(option4)
                 ],
               ),
             ),
