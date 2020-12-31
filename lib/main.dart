@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:math_materi/hogrider.dart';
 
 import 'package:math_materi/login2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'latihann.dart';
 import 'model/slider.dart';
 
 int initScreen;
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: "Barisan & Deret",
       initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
       routes: {
-        'home': (context) => HomePage(),
+        'home': (context) => QuizPage(),
         'onboard': (context) => Home(),
       },
       debugShowCheckedModeBanner: false,

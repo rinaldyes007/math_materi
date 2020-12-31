@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:math_materi/evaluasi.dart';
 import 'package:math_materi/profile.dart';
 
+import 'latihann.dart';
 import 'materi.dart';
-import 'latihan.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -67,7 +67,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   menuKotak(
                       "assets/materi.png", 'Materi', context, MateriPage()),
                   menuKotak(
-                      "assets/Latihan.png", 'Latihan', context, LatihanPage())
+                      "assets/Latihan.png", 'Latihan', context, QuizPage())
                 ],
               ),
               SizedBox(
