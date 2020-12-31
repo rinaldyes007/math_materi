@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:html_unescape/html_unescape.dart';
+import 'package:math_materi/model/slider.dart';
 import 'model/soal.dart';
+import 'main.dart';
 
 class LatihanPage extends StatefulWidget {
   @override
@@ -10,8 +12,10 @@ class LatihanPage extends StatefulWidget {
 
 class _LatihanPageState extends State<LatihanPage> {
   var unescape = new HtmlUnescape();
-
+  Home home = new Home();
+  List<Soal> nextSoal = new List<Soal>();
   String output = "no";
+  PageController pageController = new PageController(initialPage: 0);
   String option1 = "no", option2 = "no", option3 = "no", option4 = "no";
   String jawaban;
   var index = 1;
@@ -37,6 +41,7 @@ class _LatihanPageState extends State<LatihanPage> {
         jawaban = jawaban + soals[index].jawaban;
       });
       index++;
+      nextSoal = soals;
     });
   }
 

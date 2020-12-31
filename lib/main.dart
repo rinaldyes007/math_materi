@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:math_materi/hogrider.dart';
 
 import 'package:math_materi/login2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,7 @@ Future<void> main() async {
   initScreen = await pref.getInt('initScreen');
   await pref.setInt('initScreen', 1);
   runApp(MyApp());
+  //runApp(QuizPage());
 }
 
 class MyApp extends StatelessWidget {
