@@ -25,16 +25,84 @@ class QuizPageState extends State<QuizPage> {
     }
   }
 
-  void nextIndex(int length) {
-    if (index == length - 1) {
-      print("mentok");
-    } else {
-      index++;
-    }
-    setState(() {
-      print(index);
-    });
+  @override
+  void initState() {
+    super.initState();
   }
+
+  button(String optionAbjad, String optionValue, String jawaban,
+      List<Data> dataQuiz, int indx) {
+    return GestureDetector(
+      onTap: () {
+        // if (optionValue == jawaban) {
+        //   benar++;
+        // } else {
+        //   salah++;
+        // }
+        dataQuiz[indx].jawabanUser = optionValue;
+        print("trigger");
+      },
+      child: Container(
+        margin: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(10),
+        child: Center(
+          child: Text(
+            optionValue,
+            maxLines: 1,
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.indigo,
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+  }
+
+  buttonNext(String jawabanku, String kunci) {
+    return MaterialButton(
+      minWidth: 140,
+      height: 45,
+      onPressed: () {
+        index++;
+        setState(() {});
+      },
+      color: Colors.green,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      child: Text(
+        "Next",
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    );
+  }
+
+  buttonBack() {
+    return MaterialButton(
+      minWidth: 140,
+      height: 45,
+      onPressed: () {
+        index--;
+        setState(() {});
+        print(index);
+        //nextIndex(dataQuiz.length);
+      },
+      color: Colors.red,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      child: Text(
+        "Back",
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      ),
+    );
+  }
+
+  // void nextIndex(int length) {
+  //   index++;
+  //   setState(() {
+  //     print(index);
+  //   });
+  // }
+
   // buttonNext(int nextIndex) {
   //   return MaterialButton(
   //     onPressed: () {
@@ -114,78 +182,58 @@ class QuizPageState extends State<QuizPage> {
                         dataQuiz[index].jawaban, dataQuiz, index),
                     button('D', dataQuiz[index].pilihanD,
                         dataQuiz[index].jawaban, dataQuiz, index),
-                    MaterialButton(onPressed: () {
-                      nextIndex(dataQuiz.length);
-                    })
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  for (var i = index; i < dataQuiz.length; i++) {
-                    if (dataQuiz[i].jawabanUser == dataQuiz[i].jawaban) {
-                      benar++;
-                    } else if (dataQuiz[i].jawabanUser != dataQuiz[i].jawaban &&
-                        dataQuiz[i].jawabanUser != "" &&
-                        dataQuiz[i].jawabanUser != null) {
-                      salah++;
-                    }
-                    var test = index;
-                    print("key = $test");
-                  }
+              Container(
+                  child: index == dataQuiz.length - 1
+                      ? GestureDetector(
+                          onTap: () {
+                            // for (var i = 0; i < dataQuiz.length; i++) {
+                            if (dataQuiz[index].jawabanUser ==
+                                dataQuiz[index].jawaban) {
+                              benar++;
+                            } else if (dataQuiz[index].jawabanUser !=
+                                    dataQuiz[index].jawaban &&
+                                dataQuiz[index].jawabanUser != "" &&
+                                dataQuiz[index].jawabanUser != null) {
+                              salah++;
+                            }
+                            //   }
 
-                  print(dataQuiz[index].jawabanUser);
-                  print("Benar $benar");
-                  print("Salah $salah");
-                },
-                child: Container(
-                  margin: EdgeInsets.all(5.0),
-                  height: 60,
-                  width: 100,
-                  child: Center(
-                      child: Text(
-                    'Submit',
-                    style: TextStyle(color: Colors.white),
-                  )),
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
+                            print(dataQuiz[index].jawabanUser);
+                            print("Benar $benar");
+                            print("Salah $salah");
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(5.0),
+                            height: 60,
+                            width: 100,
+                            child: Center(
+                                child: Text(
+                              'Submit',
+                              style: TextStyle(color: Colors.white),
+                            )),
+                            decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        )
+                      : index == 0
+                          ? buttonNext(dataQuiz[index].jawabanUser,
+                              dataQuiz[index].jawaban)
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                buttonBack(),
+                                buttonNext(dataQuiz[index].jawabanUser,
+                                    dataQuiz[index].jawaban)
+                              ],
+                            )),
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  button(String optionAbjad, String optionValue, String jawaban,
-      List<Data> dataQuiz, int indx) {
-    return GestureDetector(
-      onTap: () {
-        // if (optionValue == jawaban) {
-        //   benar++;
-        // } else {
-        //   salah++;
-        // }
-        dataQuiz[indx].jawabanUser = optionValue;
-        print(optionValue);
-      },
-      child: Container(
-        margin: EdgeInsets.all(10.0),
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: Text(
-            optionValue,
-            maxLines: 1,
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        decoration: BoxDecoration(
-          color: Colors.indigo,
-          borderRadius: BorderRadius.circular(10),
-        ),
       ),
     );
   }
