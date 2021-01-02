@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:math_materi/dashboard.dart';
+import 'package:math_materi/model/kirim_jawaban.dart';
 import 'package:math_materi/model/quiz.dart';
 import 'package:html_unescape/html_unescape.dart';
 
@@ -13,6 +17,37 @@ class QuizPageState extends State<QuizPage> {
   var unescape = new HtmlUnescape();
   int currentIndex = 0;
   int index = 0;
+
+  // Future<http.Response> sendAnswer() {
+  //   return http.post(
+  //     'https://quizsma.000webhostapp.com/api/jawab_soal/1',
+  //     body: jsonEncode(<String, String>{
+  //       'jum_benar': benar.toString(),
+  //       'jum_salah': salah.toString()
+  //     }),
+  //   );
+  // }
+
+  Future<kirimJawaban> sendAnswer(String bnr, String slh) async {
+    final http.Response response = await http.post(
+      'https://quizsma.000webhostapp.com/api/jawab_soal/1',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{'jum_benar': bnr, 'jum_salah': slh}),
+    );
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+
+      return kirimJawaban.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
+  }
 
   Future getQuiz() async {
     final String baseUrl =
@@ -34,13 +69,25 @@ class QuizPageState extends State<QuizPage> {
       List<Data> dataQuiz, int indx) {
     return GestureDetector(
       onTap: () {
-        // if (optionValue == jawaban) {
-        //   benar++;
-        // } else {
-        //   salah++;
-        // }
-        dataQuiz[indx].jawabanUser = optionValue;
-        print("trigger");
+        if (optionValue == jawaban) {
+          benar++;
+        } else {
+          salah++;
+        }
+
+        if (index == dataQuiz.length - 1) {
+          print("benar total $benar");
+          print("salah total $salah");
+          sendAnswer(benar.toString(), salah.toString());
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => DashboardPage()));
+        } else {
+          index++;
+        }
+
+        setState(() {});
+        print("benar $benar");
+        print("salah $salah");
       },
       child: Container(
         margin: EdgeInsets.all(10.0),
@@ -60,41 +107,41 @@ class QuizPageState extends State<QuizPage> {
     );
   }
 
-  buttonNext(String jawabanku, String kunci) {
-    return MaterialButton(
-      minWidth: 140,
-      height: 45,
-      onPressed: () {
-        index++;
-        setState(() {});
-      },
-      color: Colors.green,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Text(
-        "Next",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-      ),
-    );
-  }
+  // buttonNext(String jawabanku, String kunci) {
+  //   return MaterialButton(
+  //     minWidth: 140,
+  //     height: 45,
+  //     onPressed: () {
+  //       index++;
+  //       setState(() {});
+  //     },
+  //     color: Colors.green,
+  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  //     child: Text(
+  //       "Next",
+  //       style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+  //     ),
+  //   );
+  // }
 
-  buttonBack() {
-    return MaterialButton(
-      minWidth: 140,
-      height: 45,
-      onPressed: () {
-        index--;
-        setState(() {});
-        print(index);
-        //nextIndex(dataQuiz.length);
-      },
-      color: Colors.red,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Text(
-        "Back",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-      ),
-    );
-  }
+  // buttonBack() {
+  //   return MaterialButton(
+  //     minWidth: 140,
+  //     height: 45,
+  //     onPressed: () {
+  //       index--;
+  //       setState(() {});
+  //       print(index);
+  //       //nextIndex(dataQuiz.length);
+  //     },
+  //     color: Colors.red,
+  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  //     child: Text(
+  //       "Back",
+  //       style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+  //     ),
+  //   );
+  // }
 
   // void nextIndex(int length) {
   //   index++;
@@ -174,8 +221,13 @@ class QuizPageState extends State<QuizPage> {
                 margin: EdgeInsets.symmetric(horizontal: 70.0, vertical: 20.0),
                 child: Column(
                   children: [
-                    button('A', dataQuiz[index].pilihanA,
-                        dataQuiz[index].jawaban, dataQuiz, index),
+                    button(
+                      'A',
+                      dataQuiz[index].pilihanA,
+                      dataQuiz[index].jawaban,
+                      dataQuiz,
+                      index,
+                    ),
                     button('B', dataQuiz[index].pilihanB,
                         dataQuiz[index].jawaban, dataQuiz, index),
                     button('C', dataQuiz[index].pilihanC,
@@ -189,21 +241,23 @@ class QuizPageState extends State<QuizPage> {
                   child: index == dataQuiz.length - 1
                       ? GestureDetector(
                           onTap: () {
-                            // for (var i = 0; i < dataQuiz.length; i++) {
-                            if (dataQuiz[index].jawabanUser ==
-                                dataQuiz[index].jawaban) {
-                              benar++;
-                            } else if (dataQuiz[index].jawabanUser !=
-                                    dataQuiz[index].jawaban &&
-                                dataQuiz[index].jawabanUser != "" &&
-                                dataQuiz[index].jawabanUser != null) {
-                              salah++;
-                            }
+                            print("benar total $benar");
+                            print("salah total $salah");
+                            //   // for (var i = 0; i < dataQuiz.length; i++) {
+                            //   if (dataQuiz[index].jawabanUser ==
+                            //       dataQuiz[index].jawaban) {
+                            //     benar++;
+                            //   } else if (dataQuiz[index].jawabanUser !=
+                            //           dataQuiz[index].jawaban &&
+                            //       dataQuiz[index].jawabanUser != "" &&
+                            //       dataQuiz[index].jawabanUser != null) {
+                            //     salah++;
                             //   }
+                            //   //   }
 
-                            print(dataQuiz[index].jawabanUser);
-                            print("Benar $benar");
-                            print("Salah $salah");
+                            //   print(dataQuiz[index].jawabanUser);
+                            //   print("Benar $benar");
+                            //   print("Salah $salah");
                           },
                           child: Container(
                             margin: EdgeInsets.all(5.0),
@@ -220,17 +274,7 @@ class QuizPageState extends State<QuizPage> {
                             ),
                           ),
                         )
-                      : index == 0
-                          ? buttonNext(dataQuiz[index].jawabanUser,
-                              dataQuiz[index].jawaban)
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                buttonBack(),
-                                buttonNext(dataQuiz[index].jawabanUser,
-                                    dataQuiz[index].jawaban)
-                              ],
-                            )),
+                      : null)
             ],
           ),
         ],
