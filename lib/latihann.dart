@@ -6,6 +6,8 @@ import 'package:math_materi/dashboard.dart';
 import 'package:math_materi/model/kirim_jawaban.dart';
 import 'package:math_materi/model/quiz.dart';
 import 'package:html_unescape/html_unescape.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login2.dart';
 
 class QuizPage extends StatefulWidget {
   QuizPageState createState() => QuizPageState();
@@ -27,10 +29,14 @@ class QuizPageState extends State<QuizPage> {
   //     }),
   //   );
   // }
+  Future<int> getId() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getInt('idd') ?? null;
+  }
 
   Future<kirimJawaban> sendAnswer(String bnr, String slh) async {
     final http.Response response = await http.post(
-      'https://quizsma.000webhostapp.com/api/jawab_soal/1',
+      'https://quizsma.000webhostapp.com/api/jawab_soal/$id_user',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -60,8 +66,13 @@ class QuizPageState extends State<QuizPage> {
     }
   }
 
+  int id_user = 0;
   @override
   void initState() {
+    getId().then((s) {
+      id_user = s;
+    });
+
     super.initState();
   }
 

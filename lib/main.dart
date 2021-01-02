@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: "Barisan & Deret",
       initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
       routes: {
-        'home': (context) => QuizPage(),
+        'home': (context) => HomePage(),
         'onboard': (context) => Home(),
       },
       debugShowCheckedModeBanner: false,

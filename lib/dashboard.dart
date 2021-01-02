@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_materi/evaluasi.dart';
 import 'package:math_materi/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'latihann.dart';
 import 'materi.dart';
@@ -11,6 +12,24 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  String namaUser = 'loading';
+
+  Future<String> getNama() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getString('nama') ?? null;
+  }
+
+  @override
+  void initState() {
+    getNama().then((value) {
+      namaUser = value;
+      print(namaUser);
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +64,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: Text(
-                      "Rinaldy Eka Saputra",
+                      namaUser,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: MediaQuery.of(context).size.width * 0.05,

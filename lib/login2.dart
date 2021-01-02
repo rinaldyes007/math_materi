@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:math_materi/model/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dashboard.dart';
+import 'model/share.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,19 +19,28 @@ class _HomePageState extends State<HomePage> {
   String username, password;
   final _key = new GlobalKey<FormState>();
   bool _secureText = true;
-
-  showHide() {
-    setState(() {
-      _secureText = !_secureText;
-    });
-  }
+  int id;
+  String nama;
 
   check() {
     final form = _key.currentState;
     if (form.validate()) {
       form.save();
+
       login();
     }
+  }
+
+  void saveData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    pref.setInt('idd', id);
+    pref.setString('nama', nama);
+  }
+
+  Future<int> getId() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getInt('idd') ?? null;
   }
 
   login() async {
@@ -38,6 +49,9 @@ class _HomePageState extends State<HomePage> {
         body: {"email": username, "password": password});
     final data = jsonDecode(response.body);
     bool value = data['status'];
+    id = data['data']['id'];
+    nama = data['data']['name'];
+    print("id :$nama");
 
     if (value == true) {
       setState(() {
@@ -46,12 +60,13 @@ class _HomePageState extends State<HomePage> {
     } else {
       print(value);
     }
+    saveData();
   }
 
-  savePref(bool value) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-
-    pref.setBool("status", value);
+  showHide() {
+    setState(() {
+      _secureText = !_secureText;
+    });
   }
 
   var value;
@@ -65,7 +80,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       getValue().then((a) => value = a);
       _loginStatus = value == true ? LoginStatus.signIn : LoginStatus.notSignIn;
-      print(value);
     });
   }
 
