@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:math_materi/login2.dart';
+import 'package:math_materi/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'latihann.dart';
 import 'model/slider.dart';
