@@ -3,6 +3,7 @@ import 'package:math_materi/evaluasi.dart';
 import 'package:math_materi/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'kikd.dart';
 import 'latihann.dart';
 import 'materi.dart';
 
@@ -107,7 +108,7 @@ class _DashboardPageState extends State<DashboardPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  menuKotak('assets/KI:KD.png', 'KI/KD', context, MateriPage()),
+                  menuKotak('assets/KI:KD.png', 'KI/KD', context, KIKDPage()),
                   menuKotak('assets/info.png', 'About', context, EvaluasiPage())
                 ],
               ),
