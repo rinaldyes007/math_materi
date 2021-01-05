@@ -248,44 +248,44 @@ class QuizPageState extends State<QuizPage> {
                   ],
                 ),
               ),
-              Container(
-                  child: index == dataQuiz.length - 1
-                      ? GestureDetector(
-                          onTap: () {
-                            print("benar total $benar");
-                            print("salah total $salah");
-                            //   // for (var i = 0; i < dataQuiz.length; i++) {
-                            //   if (dataQuiz[index].jawabanUser ==
-                            //       dataQuiz[index].jawaban) {
-                            //     benar++;
-                            //   } else if (dataQuiz[index].jawabanUser !=
-                            //           dataQuiz[index].jawaban &&
-                            //       dataQuiz[index].jawabanUser != "" &&
-                            //       dataQuiz[index].jawabanUser != null) {
-                            //     salah++;
-                            //   }
-                            //   //   }
+              // Container(
+              //     child: index == dataQuiz.length - 1
+              //         ? GestureDetector(
+              //             onTap: () {
+              //               print("benar total $benar");
+              //               print("salah total $salah");
+              //               //   // for (var i = 0; i < dataQuiz.length; i++) {
+              //               //   if (dataQuiz[index].jawabanUser ==
+              //               //       dataQuiz[index].jawaban) {
+              //               //     benar++;
+              //               //   } else if (dataQuiz[index].jawabanUser !=
+              //               //           dataQuiz[index].jawaban &&
+              //               //       dataQuiz[index].jawabanUser != "" &&
+              //               //       dataQuiz[index].jawabanUser != null) {
+              //               //     salah++;
+              //               //   }
+              //               //   //   }
 
-                            //   print(dataQuiz[index].jawabanUser);
-                            //   print("Benar $benar");
-                            //   print("Salah $salah");
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(5.0),
-                            height: 60,
-                            width: 100,
-                            child: Center(
-                                child: Text(
-                              'Submit',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                            decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        )
-                      : null)
+              //               //   print(dataQuiz[index].jawabanUser);
+              //               //   print("Benar $benar");
+              //               //   print("Salah $salah");
+              //             },
+              //             // child: Container(
+              //             //   margin: EdgeInsets.all(5.0),
+              //             //   height: 60,
+              //             //   width: 100,
+              //             //   child: Center(
+              //             //       child: Text(
+              //             //     'Submit',
+              //             //     style: TextStyle(color: Colors.white),
+              //             //   )),
+              //             //   decoration: BoxDecoration(
+              //             //     color: Colors.blueAccent,
+              //             //     borderRadius: BorderRadius.circular(10),
+              //             //   ),
+              //             // ),
+              //           )
+              //         : null)
             ],
           ),
         ],

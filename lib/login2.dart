@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:math_materi/model/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dashboard.dart';
-import 'model/share.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -51,15 +49,26 @@ class _HomePageState extends State<HomePage> {
     bool value = data['status'];
     id = data['data']['id'];
     nama = data['data']['name'];
-    print("id :$nama");
 
-    if (value == true) {
+    // if (data['id'] != null && data['name'] != null) {
+    //   if (value == true) {
+    //     setState(() {
+    //       _loginStatus = LoginStatus.signIn;
+    //     });
+    //   } else {
+    //     print('password salah');
+    //   }
+    // }
+    if (response.statusCode == 200) {
       setState(() {
         _loginStatus = LoginStatus.signIn;
       });
     } else {
-      print(value);
+      AlertDialog(
+        title: Text(data['status']),
+      );
     }
+
     saveData();
   }
 
@@ -253,6 +262,11 @@ class _HomePageState extends State<HomePage> {
                     //     ),
                     //   ],
                     // )
+                    Center(
+                        child: Text(
+                      'Jika terjadi masalah ketika login harap cek kembali email & password',
+                      textAlign: TextAlign.center,
+                    ))
                   ],
                 ),
               ),
