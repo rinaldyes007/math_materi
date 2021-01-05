@@ -94,7 +94,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: 30,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   menuKotak('assets/evaluasi.png', 'Evaluasi', context,
                       EvaluasiPage()),

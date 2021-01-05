@@ -168,7 +168,10 @@ class SliderTile extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          Text(desc)
+          Text(
+            desc,
+            textAlign: TextAlign.center,
+          )
         ],
       ),
     );

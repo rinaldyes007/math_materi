@@ -35,22 +35,25 @@ List<SliderModel> getSlides() {
   SliderModel sliderModel = new SliderModel();
 
   sliderModel.setImagePath("assets/covid.jpg");
-  sliderModel.setTitle("Covid");
-  sliderModel.setDesc("sdsssssssdfsfsfsfsfsfsfsffsfsf");
+  sliderModel.setTitle("Pandemi Covid");
+  sliderModel.setDesc(
+      "Disiplinlah dalam menerapkan protokol kesehatan agar tetap menjadi kebiasaan dalam keseharian");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();
 
   sliderModel.setImagePath("assets/child.png");
-  sliderModel.setTitle("Covidsdsd");
-  sliderModel.setDesc("sdsssssssdfsfsfsfsfsfsfsffsfsf");
+  sliderModel.setTitle("Olahraga");
+  sliderModel.setDesc(
+      "Mereka yang tidak punya waktu untuk berolahraga, cepat atau lambat harus meluangkan waktu untuk merawat penyakitnya");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();
 
   sliderModel.setImagePath("assets/onlen.jpg");
-  sliderModel.setTitle("Covidsdaaaaaa");
-  sliderModel.setDesc("sdsssssssdfsfsfsfsfsfsfsffsfsf");
+  sliderModel.setTitle("Belajar & Berdoa");
+  sliderModel.setDesc(
+      "Berdoa saja tidak cukup, belajar dengan baik adalah bukti Doa anda serius. Belajar adalah ibadah.");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();
