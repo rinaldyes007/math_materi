@@ -90,8 +90,7 @@ class QuizPageState extends State<QuizPage> {
           print("benar total $benar");
           print("salah total $salah");
           sendAnswer(benar.toString(), salah.toString());
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => DashboardPage()));
+          Navigator.of(context).pop(context);
         } else {
           index++;
         }
