@@ -14,6 +14,17 @@ class _MateriPageState extends State<MateriPage> {
     );
   }
 
+  textMotivasi(String str) {
+    return Text(
+      str,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          fontWeight: FontWeight.w600,
+          height: 1.5,
+          fontStyle: FontStyle.italic),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -78,6 +89,11 @@ class _MateriPageState extends State<MateriPage> {
                       SizedBox(height: 15),
                       text(
                           'Bagaimanakah cara Ave menentukan atau menduga banyak buah dalam satu tumpukan? Bantulah!'),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      textMotivasi(
+                          'Disiplin diri merupakan senjata ampuh yang harus dimiliki setiap orang yang mau sukses.')
                     ],
                   ),
                   ListView(
@@ -96,11 +112,14 @@ class _MateriPageState extends State<MateriPage> {
                       text(
                           'Banyaknya bulatan yang tersusun dari setiap kelompok dapat dituliskan dengan bilangan 1, 3, 6, 10. Bilangan tersebut membentuk barisan berpola. Setiap bilangan berurutan pada pola ini mempunyai jarak yang sama yaitu 1 satuan. '),
                       text(
-                          'Beda setiap dua bilangan yang berdekatan pada barisan 2, 3, 4,... adalah tetap yaitu 1. Dengan demikian barisan 2, 3, 4,... disebut “barisan Aritmatika” dan barisan 1, 3, 6, 10,... disebut “Barisan Aritmatika Tingkat Dua”.'),
-                      text(
                           'Jarak antar bilangan berurutan menunjukkan selisih antar bilangan.. Barisan bilangan seperti ini disebut barisan aritmatika, dengan selisih setiap dua suku berurutannya yang disebut beda.'),
                       text(
                           'Jadi, Barisan Aritmatika adalah suatu barisan dengan selisih antara dua suku yang berurutan selalu tetap.'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      textMotivasi(
+                          'Kedewasaan tak datang dengan bertambahnya usia, melainkan dengan sikap menerima tanggung jawab.')
                     ],
                   ),
                   ListView(
@@ -172,6 +191,11 @@ class _MateriPageState extends State<MateriPage> {
                       text('Un  = a + (n – 1)b'),
                       text('U10 = 4 + (10 – 1)3'),
                       text('U10 = 31'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      textMotivasi(
+                          'Orang yang tidak jujur mengungkapkan kesalahannya dari diri mereka sendiri, sementara orang yang jujur tahu akan kesalahannya dan mengakuinya.')
                     ],
                   ),
                   ListView(
@@ -228,6 +252,11 @@ class _MateriPageState extends State<MateriPage> {
                       text('Un  = 24'),
                       text('k     = 8'),
                       text('b     = (Un- a)/(k+1) = (24 - 6)/(8+1) = 18/9 = 2'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      textMotivasi(
+                          'Selalu ada harapan bagi mereka yang berdoa dan selalu ada jalan bagi mereka yang teus berusaha.'),
                     ],
                   ),
                   ListView(
@@ -278,6 +307,11 @@ class _MateriPageState extends State<MateriPage> {
                       text('Jawab :'),
                       text('Sn =  1/2  n [( 2a + (n - 1 )b]'),
                       text('S25 =  1/2  25 [( 2 . 4 + (25 - 1 )4]'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      textMotivasi(
+                          'Hargai usaha anda, hargai diri anda. Penghargaan kepada diri sendiri akan membawa anda menuju disiplin diri.')
                     ],
                   ),
                 ],

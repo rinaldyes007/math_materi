@@ -71,7 +71,7 @@ class ProfilPage extends StatelessWidget {
                               color: Colors.white),
                         ),
                         Text(
-                          'Mipatek Matematika',
+                          'F. Pend. MIPATEK',
                           style: TextStyle(
                               fontWeight: FontWeight.w500, color: Colors.white),
                         ),
