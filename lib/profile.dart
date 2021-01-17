@@ -11,7 +11,10 @@ class ProfilPage extends StatelessWidget {
       str,
       textAlign: TextAlign.center,
       style: TextStyle(
-          color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
+          color: Colors.white,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          height: 1.5),
     );
   }
 
@@ -56,10 +59,11 @@ class ProfilPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
+                          margin: EdgeInsets.only(top: 10),
                           height: 160,
                           width: 160,
                           child: Image.asset(
-                            'assets/orang.png',
+                            'assets/adis.png',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -100,8 +104,6 @@ class ProfilPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset('assets/whatsapp.png'),
-                      Image.asset('assets/faceboo.png'),
-                      Image.asset('assets/instag.png')
                     ],
                   )),
                 ),
@@ -158,35 +160,23 @@ class ProfilPage extends StatelessWidget {
                           height: 5,
                         ),
                         Center(
-                          child:
-                              text("Jangan berjanji saat kamu sedang bahagia."),
+                          child: text(
+                              "Kesempatan bukanlah hal yang kebetulan, kau harus menciptakannya"),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         Center(
                           child: Text(
-                            'Jangan membalas omongan orang ketika kamu marah.',
+                            'Kesuksesan adalah buah dari usaha-usaha kecil yang diulang hari demi hari',
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                height: 1.5,
                                 fontSize: 12,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Center(
-                          child: Text(
-                            'Jangan mengambil keputusan saat sedang merasa sedih.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        )
                       ],
                     ),
                   ),

@@ -63,7 +63,7 @@ class _MateriPageState extends State<MateriPage> {
                         height: 15,
                       ),
                       Text(
-                        '1. Pengertian Artitmatika',
+                        '1. Pengertian Aritmatika',
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w700),
@@ -285,18 +285,16 @@ class _MateriPageState extends State<MateriPage> {
                       SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'assets/m6.png',
-                            height: 35,
-                          ),
-                          Image.asset(
-                            'assets/m7.png',
-                            height: 35,
-                          ),
-                        ],
+                      Image.asset(
+                        'assets/m6.png',
+                        height: 35,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Image.asset(
+                        'assets/m7.png',
+                        height: 35,
                       ),
                       SizedBox(
                         height: 15,
@@ -307,11 +305,12 @@ class _MateriPageState extends State<MateriPage> {
                       text('Jawab :'),
                       text('Sn =  1/2  n [( 2a + (n - 1 )b]'),
                       text('S25 =  1/2  25 [( 2 . 4 + (25 - 1 )4]'),
+                      text('S25 =  1300'),
                       SizedBox(
                         height: 15,
                       ),
                       textMotivasi(
-                          'Hargai usaha anda, hargai diri anda. Penghargaan kepada diri sendiri akan membawa anda menuju disiplin diri.')
+                          'Kejujuran akan memperindah diri seseorang, jauh lebih indah dari apapun yang dimilikinya.')
                     ],
                   ),
                 ],
