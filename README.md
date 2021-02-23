@@ -1,6 +1,6 @@
 ![photo_2021-02-23_09-21-50](https://user-images.githubusercontent.com/55604807/108795839-cfc31400-75b9-11eb-80d2-53331144746d.jpg)
 
-![photo_2021-02-23_09-21-48](https://user-images.githubusercontent.com/55604807/108795837-cf2a7d80-75b9-11eb-99c9-4abdc1d9f5d4.jpg)
+
 
 ![photo_2021-02-23_09-21-47](https://user-images.githubusercontent.com/55604807/108795835-ce91e700-75b9-11eb-987d-5c597594075a.jpg)
 
