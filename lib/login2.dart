@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         "https://quizsma.000webhostapp.com/api/login",
         body: {"email": username, "password": password});
     final data = jsonDecode(response.body);
-    bool value = data['status'];
+    //   bool value = data['status'];
     id = data['data']['id'];
     nama = data['data']['name'];
 
