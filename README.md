@@ -1,6 +1,7 @@
+Aplikasi ini adalah aplikasi quiz sederhana yang berfungsi untuk membantu guru dalam memberikan materi serta latihan kepada siswa yang sedang belajar dirumah dikala pandemi ini, alur aplikasi ini adalah siswa login dengan akun nya masing - masing, kemudian masuk menu utama dimana pada halaman ini berisi beberapa menu - menu, yaitu materi, latihan, evaluasi.
+Di menu materi berisi beberapa materi yang diperlukan oleh siswa dalam menjawab latihan, kemudian siswa mengisi soal latihan yang disediakan oleh guru dari website guru yang terhubung dengan aplikasi ini melalui rest api, dan hasil nilai siswa tersebut langsung diproses dan ditampilkan di website guru 
+
 ![photo_2021-02-23_09-21-50](https://user-images.githubusercontent.com/55604807/108795839-cfc31400-75b9-11eb-80d2-53331144746d.jpg)
-
-
 
 ![photo_2021-02-23_09-21-47](https://user-images.githubusercontent.com/55604807/108795835-ce91e700-75b9-11eb-987d-5c597594075a.jpg)
 
